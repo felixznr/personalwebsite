@@ -1,7 +1,6 @@
 baseURL = "https://github.com/felixznr/personalwebsite/"
 languageCode = "en"
 title = "Felix Zauner"
-theme = ""
 paginate = 8
 enableRobotsTXT = true
 enableEmoji = false
