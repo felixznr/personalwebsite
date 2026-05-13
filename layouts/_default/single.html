@@ -1,0 +1,50 @@
+{{ define "main" }}
+<article class="article">
+  <header class="article__header">
+    <a href="{{ .Section | relURL }}/" class="back-link">&larr; Back to {{ .Section | title }}</a>
+    <div class="article__meta">
+      {{ if .Date }}<time>{{ .Date.Format "02 January 2006" }}</time>{{ end }}
+      {{ with .Params.category }}<span class="article__cat">{{ . }}</span>{{ end }}
+      {{ if .Params.tags }}
+      <div class="article__tags">
+        {{ range .Params.tags }}<span>{{ . }}</span>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+    <h1 class="article__title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="article__lead">{{ . }}</p>{{ end }}
+  </header>
+
+  {{ with .Params.cover }}
+  <figure class="article__cover">
+    <img src="{{ . }}" alt="{{ $.Title }}" loading="eager" />
+  </figure>
+  {{ end }}
+
+  {{ if .Params.gallery }}
+  <div class="article__gallery">
+    {{ range .Params.gallery }}
+    <figure>
+      <img src="{{ .src }}" alt="{{ .alt }}" loading="lazy" />
+      {{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+    </figure>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <div class="article__body prose">
+    {{ .Content }}
+  </div>
+
+  {{ if .Params.links }}
+  <div class="article__links">
+    {{ range .Params.links }}
+    <a href="{{ .url }}" target="_blank" rel="noopener" class="article__ext-link">
+      {{ .label }}
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.5"/></svg>
+    </a>
+    {{ end }}
+  </div>
+  {{ end }}
+</article>
+{{ end }}

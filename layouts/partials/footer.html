@@ -1,0 +1,27 @@
+<footer class="footer" id="contact">
+  <div class="footer__inner">
+    <div class="footer__cta">
+      <p class="label">Get in touch</p>
+      <h2 class="footer__heading">Let's build something.</h2>
+      <p class="footer__sub">Open to internships, collaborations, and interesting engineering problems.</p>
+    </div>
+    <div class="footer__links">
+      <a href="mailto:{{ .Site.Params.email }}" class="footer__link">
+        <span>Email</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+      <a href="{{ .Site.Params.github }}" target="_blank" rel="noopener" class="footer__link">
+        <span>GitHub</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+      <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener" class="footer__link">
+        <span>LinkedIn</span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.5"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>&copy; {{ now.Year }} Felix Zauner</span>
+    <span>{{ .Site.Params.location }}</span>
+  </div>
+</footer>

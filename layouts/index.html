@@ -1,0 +1,126 @@
+{{ define "main" }}
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero__text">
+    <p class="label reveal">Electrical Engineering &middot; Robotics</p>
+    <h1 class="hero__name reveal reveal--d1">
+      Felix<br>Zauner
+    </h1>
+    <p class="hero__tagline reveal reveal--d2">Building things at the intersection of hardware, control theory, and embedded systems. Based in Salzburg.</p>
+    <div class="hero__meta reveal reveal--d3">
+      <div class="meta-item">
+        <span class="meta-label">Focus</span>
+        <span class="meta-value">Robotics</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">School</span>
+        <span class="meta-value">HTBLUVA Salzburg</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Graduating</span>
+        <span class="meta-value">2026</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero__image reveal">
+    <img src="/images/photo.jpg" alt="Felix Zauner" loading="eager" />
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="about__header">
+    <p class="label reveal"><span class="label__num">01</span>About</p>
+    <h2 class="section-heading reveal reveal--d1">Engineer by training,<br>builder by instinct.</h2>
+  </div>
+  <div class="about__content">
+    <div class="about__text">
+      <p class="reveal">I'm finishing my Matura in Electrical Engineering with a focus on Robotics at HTBLUVA Salzburg. My work spans the full stack of embedded systems — from schematic capture and PCB layout all the way to firmware and control algorithms.</p>
+      <p class="reveal reveal--d1">My diploma thesis, ALBERT, is a custom flight computer for a fin-controlled model rocket using LQR state-feedback control. It's the kind of project where everything has to work together: hardware, software, and math.</p>
+    </div>
+    <div class="skills reveal reveal--d2">
+      <div class="skill">
+        <span class="skill__label">Hardware</span>
+        <span class="skill__value">PCB design, schematic, layout, bring-up, embedded hardware</span>
+      </div>
+      <div class="skill">
+        <span class="skill__label">Software</span>
+        <span class="skill__value">C, Python, MATLAB / Simulink</span>
+      </div>
+      <div class="skill">
+        <span class="skill__label">Theory</span>
+        <span class="skill__value">Control theory, LQR, state-space modelling, Kalman filters</span>
+      </div>
+      <div class="skill">
+        <span class="skill__label">Languages</span>
+        <span class="skill__value">German (native), English (C2 — Cambridge CPE)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Projects -->
+<section class="featured">
+  <div class="featured__header">
+    <p class="label reveal"><span class="label__num">02</span>Projects</p>
+    <div class="featured__header-row">
+      <h2 class="section-heading reveal reveal--d1">Selected work</h2>
+      <a href="/projects/" class="text-link reveal reveal--d2">View all &rarr;</a>
+    </div>
+  </div>
+
+  {{ range first 3 (where .Site.RegularPages "Section" "projects") }}
+  <article class="project-card reveal">
+    <a href="{{ .RelPermalink }}" class="project-card__inner">
+      <div class="project-card__image">
+        {{ if .Params.cover }}
+        <img src="{{ .Params.cover }}" alt="{{ .Title }}" loading="lazy" />
+        {{ else }}
+        <div class="project-card__placeholder">
+          <canvas class="particle-canvas" data-color="{{ with .Params.accent }}{{ . }}{{ else }}#c45d3e{{ end }}"></canvas>
+        </div>
+        {{ end }}
+      </div>
+      <div class="project-card__info">
+        <div class="project-card__top">
+          <span class="label">{{ .Params.category }}</span>
+          <span class="label">{{ .Params.year }}</span>
+        </div>
+        <h3 class="project-card__title">{{ .Title }}</h3>
+        <p class="project-card__desc">{{ .Description }}</p>
+        <div class="project-card__tags">
+          {{ range .Params.tags }}
+          <span>{{ . }}</span>
+          {{ end }}
+        </div>
+      </div>
+    </a>
+  </article>
+  {{ end }}
+</section>
+
+<!-- Latest Blog Posts -->
+<section class="latest-posts">
+  <div class="latest-posts__header">
+    <p class="label reveal"><span class="label__num">03</span>Writing</p>
+    <div class="featured__header-row">
+      <h2 class="section-heading reveal reveal--d1">Notes & thoughts</h2>
+      <a href="/blog/" class="text-link reveal reveal--d2">Read all &rarr;</a>
+    </div>
+  </div>
+  <div class="posts-grid">
+    {{ range first 4 (where .Site.RegularPages "Section" "blog") }}
+    <article class="post-item reveal">
+      <a href="{{ .RelPermalink }}">
+        <time class="post-item__date">{{ .Date.Format "02 Jan 2006" }}</time>
+        {{ with .Params.category }}<span class="post-item__cat">{{ . }}</span>{{ end }}
+        <h3 class="post-item__title">{{ .Title }}</h3>
+        <p class="post-item__excerpt">{{ .Summary | truncate 120 }}</p>
+      </a>
+    </article>
+    {{ end }}
+  </div>
+</section>
+
+{{ end }}

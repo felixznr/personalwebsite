@@ -1,0 +1,11 @@
+<nav class="nav" id="nav">
+  <a href="/" class="nav__logo">Felix Zauner</a>
+  <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span>
+  </button>
+  <ul class="nav__links" id="navLinks">
+    {{ range .Site.Menus.main }}
+    <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+    {{ end }}
+  </ul>
+</nav>

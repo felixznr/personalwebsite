@@ -1,0 +1,57 @@
+{{ define "main" }}
+<section class="page-header">
+  <h1 class="page-header__title reveal">{{ .Title }}</h1>
+  {{ with .Description }}<p class="page-header__desc reveal reveal--d1">{{ . }}</p>{{ end }}
+</section>
+
+<section class="list-content">
+  {{ .Content }}
+
+  {{ if eq .Section "blog" }}
+  <div class="posts-grid posts-grid--full">
+    {{ range .Pages }}
+    <article class="post-item reveal">
+      <a href="{{ .RelPermalink }}">
+        <time class="post-item__date">{{ .Date.Format "02 Jan 2006" }}</time>
+        {{ with .Params.category }}<span class="post-item__cat">{{ . }}</span>{{ end }}
+        <h3 class="post-item__title">{{ .Title }}</h3>
+        <p class="post-item__excerpt">{{ .Summary | truncate 160 }}</p>
+      </a>
+    </article>
+    {{ end }}
+  </div>
+
+  {{ else if eq .Section "projects" }}
+  <div class="projects-list">
+    {{ range .Pages }}
+    <article class="project-card reveal">
+      <a href="{{ .RelPermalink }}" class="project-card__inner">
+        <div class="project-card__image">
+          {{ if .Params.cover }}
+          <img src="{{ .Params.cover }}" alt="{{ .Title }}" loading="lazy" />
+          {{ else }}
+          <div class="project-card__placeholder">
+            <canvas class="particle-canvas" data-color="{{ with .Params.accent }}{{ . }}{{ else }}#c45d3e{{ end }}"></canvas>
+          </div>
+          {{ end }}
+        </div>
+        <div class="project-card__info">
+          <div class="project-card__top">
+            <span class="label">{{ .Params.category }}</span>
+            <span class="label">{{ .Params.year }}</span>
+          </div>
+          <h3 class="project-card__title">{{ .Title }}</h3>
+          <p class="project-card__desc">{{ .Description }}</p>
+          <div class="project-card__tags">
+            {{ range .Params.tags }}
+            <span>{{ . }}</span>
+            {{ end }}
+          </div>
+        </div>
+      </a>
+    </article>
+    {{ end }}
+  </div>
+  {{ end }}
+</section>
+{{ end }}

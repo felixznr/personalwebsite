@@ -1,0 +1,48 @@
+baseURL = "https://felixznr.github.io/BusierDeer/"
+languageCode = "en"
+title = "Felix Zauner"
+theme = ""
+paginate = 8
+enableRobotsTXT = true
+enableEmoji = false
+
+[params]
+  description = "Electrical engineering, embedded systems, and everything in between."
+  author = "Felix Zauner"
+  location = "Salzburg, Austria"
+  email = "felixzauner21@icloud.com"
+  github = "https://github.com/felixznr"
+  linkedin = "https://linkedin.com/in/felix-zauner"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "monokailight"
+    lineNos = false
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "/#about"
+    weight = 1
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 2
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 3
+  [[menu.main]]
+    name = "Contact"
+    url = "/#contact"
+    weight = 4
+
+[outputs]
+  home = ["HTML"]
+  section = ["HTML"]
+
+[build]
+  writeStats = true
