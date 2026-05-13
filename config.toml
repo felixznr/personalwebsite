@@ -5,6 +5,9 @@ paginate = 8
 enableRobotsTXT = true
 enableEmoji = false
 
+relativeURLs = true
+canonifyURLs = true
+
 [params]
   description = "Electrical engineering, embedded systems, and everything in between."
   author = "Felix Zauner"
